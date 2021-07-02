@@ -5,16 +5,15 @@
   <input id="user-name" class="form-control" placeholder="name" formControlName="name">
   <input id="user-phone" class="form-control" placeholder="phone" formControlName="phone">
   <input id="user-email" class="form-control" placeholder="email" formControlName="email">
-  <input id="user-address" class="form-control" placeholder="address"
-         formControlName="address">
+  <input id="user-address" class="form-control" placeholder="address" formControlName="address">
   <div class="btn-group-lg">
-    <button class="btn-primary" routerLink="../../users">
+    <button class="btn-primary" routerLink="../../users" type="button">
       Back
     </button>
-    <button class="btn-success" routerLink="../../users">
+    <button class="btn-success" (click)="update()" routerLink="../../users" type="button">
       Update this user!
     </button>
-    <button class="btn-danger" (click)="delete(user)" routerLink="../../users">
+    <button class="btn-danger" (click)="delete(user)" routerLink="../../users" type="button">
       Delete this user!
     </button>
   </div>

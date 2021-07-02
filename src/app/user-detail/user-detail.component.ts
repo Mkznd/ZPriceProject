@@ -23,6 +23,7 @@ export class UserDetailComponent implements OnInit {
         this.userForm.get('name')?.setValue(user.name);
         this.userForm.get('email')?.setValue(user.email);
         this.userForm.get('phone')?.setValue(user.phone);
+        this.userForm.get('address')?.setValue(user.address);
       });
   }
 
@@ -38,7 +39,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
     this.userForm = this.formBuilder.group({
-      name: new FormControl(this.user?.name,[Validators.required]),
+      name: new FormControl('',[Validators.required]),
       phone: new FormControl('',[Validators.required, Validators.pattern('[0-9 ]{11}')]),
       email: new FormControl('',[Validators.required]),
       address: new FormControl('',[Validators.required])
@@ -49,4 +50,11 @@ export class UserDetailComponent implements OnInit {
   get phone(){return this.userForm.get("phone")}
   get address(){return this.userForm.get("address")}
 
+  update(): void {
+    this.user!.name = this.name?.value;
+    this.user!.email = this.email?.value;
+    this.user!.phone = this.phone?.value;
+    this.user!.address = this.address?.value;
+    this.userDataService.updateUser(this.user!).subscribe()
+  }
 }
