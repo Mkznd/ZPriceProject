@@ -4,6 +4,7 @@
       "id": 0,
       "name": "John",
       "phone": "12345678",
+      "email": "1@gmail.com",
       "address": "a1"
     },
     {

@@ -1,6 +1,31 @@
 <h2>Users:</h2>
 <ul class="users">
-  <li *ngFor="let user of users">
-    <a href=""><span>{{user.name}}</span></a>
+  <li *ngFor="let user of getStaticUsers()">
+    <a routerLink="/user/{{user.id}}"
+       (click)="onSelect(user)">
+      <span>{{user.name}}</span>
+    </a>
   </li>
 </ul>
+
+<h2>Create!</h2>
+<div>
+  <label for="user-name">user name: </label>
+  <input id="user-name" #userName placeholder="name">
+</div>
+<div>
+  <label for="user-phone">user phone: </label>
+  <input id="user-phone" #userPhone placeholder="name">
+</div>
+<div>
+  <label for="user-email">user email: </label>
+  <input id="user-email" #userEmail placeholder="name">
+</div>
+<div>
+  <label for="user-address">user address: </label>
+  <input id="user-address" #userAddress placeholder="name">
+</div>
+<button class="create-button" (click)="add(userName.value, userPhone.value, userEmail.value, userAddress.value)">
+  Create user!
+</button>
+
