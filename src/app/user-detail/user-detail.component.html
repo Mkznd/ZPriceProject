@@ -2,18 +2,24 @@
 
   <h2>{{user.name | uppercase}} Details</h2>
   <span>id: </span>{{user.id}}
-  <input id="user-name" class="form-control" placeholder="name" formControlName="name">
-  <input id="user-phone" class="form-control" placeholder="phone" formControlName="phone">
-  <input id="user-email" class="form-control" placeholder="email" formControlName="email">
-  <input id="user-address" class="form-control" placeholder="address" formControlName="address">
+  <input id="user-name" class="form-control" placeholder="name" formControlName="name"
+         [class.is-invalid]="name!.invalid && name!.touched">
+  <input id="user-phone" class="form-control" placeholder="phone" formControlName="phone"
+         [class.is-invalid]="phone!.invalid && phone!.touched">
+  <input id="user-email" class="form-control" placeholder="email" formControlName="email"
+         [class.is-invalid]="email!.invalid && email!.touched">
+  <input id="user-address" class="form-control" placeholder="address" formControlName="address"
+         [class.is-invalid]="address!.invalid && address!.touched">
   <div class="btn-group-lg">
-    <button class="btn-primary" routerLink="../../users" type="button">
+    <button class="btn btn-outline-primary" routerLink="../../users" type="button">
       Back
     </button>
-    <button class="btn-success" (click)="update()" routerLink="../../users" type="button">
+    <button class="btn btn-outline-success align-items-center"
+            [class.disabled]="name!.invalid || email!.invalid || phone!.invalid || address!.invalid"
+            (click)="update()" routerLink="../../users" type="button">
       Update this user!
     </button>
-    <button class="btn-danger" (click)="delete(user)" routerLink="../../users" type="button">
+    <button class="btn btn-outline-danger" (click)="delete(user)" routerLink="../../users" type="button">
       Delete this user!
     </button>
   </div>

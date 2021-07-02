@@ -11,11 +11,15 @@
 
   <form [formGroup]="userForm" class="input-group-lg">
     <h2>Create!</h2>
-    <input id="user-name" class="form-control" #userName placeholder="Name" formControlName="name" >
-    <input id="user-phone" class="form-control" #userPhone placeholder="Phone" formControlName="phone">
-    <input id="user-email" class="form-control" #userEmail placeholder="Email" formControlName="email">
-    <input id="user-address" class="form-control" #userAddress placeholder="Address" formControlName="address">
-    <button class="btn btn-success btn-lg align-items-center"
+    <input id="user-name" class="form-control" #userName placeholder="Name" formControlName="name"
+           [class.is-invalid]="name!.invalid && name!.touched">
+    <input id="user-phone" class="form-control" #userPhone placeholder="Phone" formControlName="phone"
+           [class.is-invalid]="phone!.invalid && phone!.touched">
+    <input id="user-email" class="form-control" #userEmail placeholder="Email" formControlName="email"
+           [class.is-invalid]="email!.invalid && email!.touched" [email]="true">
+    <input id="user-address" class="form-control" #userAddress placeholder="Address" formControlName="address"
+           [class.is-invalid]="address!.invalid && address!.touched">
+    <button class="btn btn-outline-success align-items-center"
             [class.disabled]="name!.invalid || email!.invalid || phone!.invalid || address!.invalid"
             (click)="add(userName.value, userPhone.value, userEmail.value, userAddress.value)">
       Create user!

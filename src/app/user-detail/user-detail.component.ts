@@ -39,7 +39,7 @@ export class UserDetailComponent implements OnInit {
     this.getUser();
     this.userForm = this.formBuilder.group({
       name: new FormControl('',[Validators.required]),
-      phone: new FormControl('',[Validators.required, Validators.pattern('[0-9 ]{11}')]),
+      phone: new FormControl('',[Validators.required, Validators.pattern('[0-9 ]{10}')]),
       email: new FormControl('',[Validators.required]),
       address: new FormControl('',[Validators.required])
     });
@@ -50,6 +50,7 @@ export class UserDetailComponent implements OnInit {
   get address(){return this.userForm.get("address")}
 
   update(): void {
+    if(!(this.name?.valid && this.phone?.valid && this.email?.valid && this.address?.valid)) return;
     this.user!.name = this.name?.value;
     this.user!.email = this.email?.value;
     this.user!.phone = this.phone?.value;

@@ -1,24 +1,11 @@
 {
   "users": [
     {
-      "id": 0,
-      "name": "John",
-      "phone": "12345678",
-      "email": "1@gmail.com",
-      "address": "a1"
-    },
-    {
       "id": 1,
-      "name": "John1",
-      "phone": "12364273",
-      "address": "a2"
-    },
-    {
-      "id": 2,
-      "name": "asdff",
-      "email": "pepega",
-      "phone": "11111111111",
-      "address": "egasdga"
+      "name": "Test user",
+      "email": "y1@test.com",
+      "phone": "1234567890",
+      "address": "weqwe"
     }
   ]
 }

@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
     this.getUsers();
     this.userForm = this.formBuilder.group({
       name: new FormControl('',[Validators.required]),
-      phone: new FormControl('',[Validators.required, Validators.pattern('[0-9 ]{11}')]),
+      phone: new FormControl('',[Validators.required, Validators.pattern('[0-9 ]{10}')]),
       email: new FormControl('',[Validators.required]),
       address: new FormControl('',[Validators.required])
     });
