@@ -4,7 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {User} from "../User";
 import {UsersComponent} from "../users/users.component";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {waitForAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'app-user-detail',
