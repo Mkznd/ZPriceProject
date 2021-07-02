@@ -1,31 +1,24 @@
-<h2>Users:</h2>
-<ul class="users">
-  <li *ngFor="let user of getStaticUsers()">
-    <a routerLink="/user/{{user.id}}"
-       (click)="onSelect(user)">
-      <span>{{user.name}}</span>
-    </a>
-  </li>
-</ul>
+<div class="container align-items-center"><h2>Users:</h2>
+  <ul class="users list-group">
+    <li *ngFor="let user of getStaticUsers()" class="list-group-item list-group-item-action">
+      <a routerLink="/user/{{user.id}}"
+         (click)="onSelect(user)">
+        <span>{{user.name}}</span>
+      </a>
+    </li>
+  </ul>
 
-<h2>Create!</h2>
-<div>
-  <label for="user-name">user name: </label>
-  <input id="user-name" #userName placeholder="name">
-</div>
-<div>
-  <label for="user-phone">user phone: </label>
-  <input id="user-phone" #userPhone placeholder="name">
-</div>
-<div>
-  <label for="user-email">user email: </label>
-  <input id="user-email" #userEmail placeholder="name">
-</div>
-<div>
-  <label for="user-address">user address: </label>
-  <input id="user-address" #userAddress placeholder="name">
-</div>
-<button class="create-button" (click)="add(userName.value, userPhone.value, userEmail.value, userAddress.value)">
-  Create user!
-</button>
 
+  <form [formGroup]="userForm" class="input-group-lg">
+    <h2>Create!</h2>
+    <input id="user-name" class="form-control" #userName placeholder="Name" formControlName="name" >
+    <input id="user-phone" class="form-control" #userPhone placeholder="Phone" formControlName="phone">
+    <input id="user-email" class="form-control" #userEmail placeholder="Email" formControlName="email">
+    <input id="user-address" class="form-control" #userAddress placeholder="Address" formControlName="address">
+    <button class="btn btn-success btn-lg align-items-center"
+            [class.disabled]="name!.invalid || email!.invalid || phone!.invalid || address!.invalid"
+            (click)="add(userName.value, userPhone.value, userEmail.value, userAddress.value)">
+      Create user!
+    </button>
+  </form>
+</div>

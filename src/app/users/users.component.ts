@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../User";
 import {UserDataService} from "../user-data.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-users',
@@ -10,6 +11,7 @@ import {UserDataService} from "../user-data.service";
 export class UsersComponent implements OnInit {
 
   static users: User[] = []
+  public userForm!: FormGroup;
 
   getStaticUsers(){
     return UsersComponent.users;
@@ -38,10 +40,20 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  constructor(private userDataService: UserDataService) { }
+  constructor(private userDataService: UserDataService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getUsers();
+    this.userForm = this.formBuilder.group({
+      name: new FormControl('',[Validators.required]),
+      phone: new FormControl('',[Validators.required, Validators.pattern('[0-9 ]{11}')]),
+      email: new FormControl('',[Validators.required]),
+      address: new FormControl('',[Validators.required])
+    });
   }
-
+  get name(){return this.userForm.get("name")}
+  get email(){return this.userForm.get("email")}
+  get phone(){return this.userForm.get("phone")}
+  get address(){return this.userForm.get("address")}
 }

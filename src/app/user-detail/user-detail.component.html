@@ -1,25 +1,21 @@
-<div *ngIf="user">
+<form *ngIf="user" class="container" [formGroup]="userForm">
 
   <h2>{{user.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{user.id}}</div>
-  <div>
-    <label for="user-name">user name: </label>
-    <input id="user-name" [(ngModel)]="user.name" placeholder="name">
+  <span>id: </span>{{user.id}}
+  <input id="user-name" class="form-control" placeholder="name" formControlName="name">
+  <input id="user-phone" class="form-control" placeholder="phone" formControlName="phone">
+  <input id="user-email" class="form-control" placeholder="email" formControlName="email">
+  <input id="user-address" class="form-control" placeholder="address"
+         formControlName="address">
+  <div class="btn-group-lg">
+    <button class="btn-primary" routerLink="../../users">
+      Back
+    </button>
+    <button class="btn-success" routerLink="../../users">
+      Update this user!
+    </button>
+    <button class="btn-danger" (click)="delete(user)" routerLink="../../users">
+      Delete this user!
+    </button>
   </div>
-  <div>
-    <label for="user-phone">user phone: </label>
-    <input id="user-phone" [(ngModel)]="user.phone" placeholder="phone">
-  </div>
-  <div>
-    <label for="user-email">user email: </label>
-    <input id="user-email" [(ngModel)]="user.email" placeholder="email">
-  </div>
-  <div>
-    <label for="user-address">user address: </label>
-    <input id="user-address" [(ngModel)]="user.address" placeholder="address">
-  </div>
-
-  <button class="delete-button" (click)="delete(user)" routerLink="../../users">
-    Delete this user!
-  </button>
-</div>
+</form>
