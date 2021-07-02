@@ -1,1 +1,6 @@
-<p>users works!</p>
+<h2>Users:</h2>
+<ul class="users">
+  <li *ngFor="let user of users">
+    <a href=""><span>{{user.name}}</span></a>
+  </li>
+</ul>
