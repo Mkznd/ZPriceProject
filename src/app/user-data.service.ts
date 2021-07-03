@@ -8,10 +8,14 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserDataService {
 
-  private userURL = 'http://localhost:3000/users';
+  userURL(id?: Number) {
+    if (id === null)
+      return 'http://localhost:3000/users';
+    return `http://localhost:3000/users/${id}`;
+  }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userURL)
+    return this.http.get<User[]>(this.userURL())
   }
 
   getUser(id: number): Observable<User> {
@@ -22,14 +26,16 @@ export class UserDataService {
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.userURL, user);
+    return this.http.post<User>(this.userURL(), user);
   }
 
-  deleteUser(id: number): Observable<User>{
-    return this.http.delete<User>(`${this.userURL}/${id}`);
+  deleteUser(id: number): Observable<User> {
+    return this.http.delete<User>(this.userURL(id));
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.userURL}/${user.id}`, user);
+    return this.http.put<User>(this.userURL(user.id), user);
   }
+
+
 }

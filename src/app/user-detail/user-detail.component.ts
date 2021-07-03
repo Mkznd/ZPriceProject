@@ -11,7 +11,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  user: User | undefined;
+  user?: User;
   id: number = Number(this.route.snapshot.paramMap.get('id'));
   public userForm!: FormGroup;
 
@@ -19,11 +19,15 @@ export class UserDetailComponent implements OnInit {
     this.userDataService.getUser(this.id)
       .subscribe(user => {
         this.user = user;
-        this.userForm.get('name')?.setValue(user.name);
-        this.userForm.get('email')?.setValue(user.email);
-        this.userForm.get('phone')?.setValue(user.phone);
-        this.userForm.get('address')?.setValue(user.address);
+        this.fillUserDetailForm(user);
       });
+  }
+
+  private fillUserDetailForm(user: User) {
+    this.userForm.get('name')?.setValue(user.name);
+    this.userForm.get('email')?.setValue(user.email);
+    this.userForm.get('phone')?.setValue(user.phone);
+    this.userForm.get('address')?.setValue(user.address);
   }
 
   delete(user: User): void {
@@ -50,11 +54,19 @@ export class UserDetailComponent implements OnInit {
   get address(){return this.userForm.get("address")}
 
   update(): void {
-    if(!(this.name?.valid && this.phone?.valid && this.email?.valid && this.address?.valid)) return;
+    if(!this.checkForm()) return;
+    this.setUserValues();
+    this.userDataService.updateUser(this.user!).subscribe()
+  }
+
+  private setUserValues() {
     this.user!.name = this.name?.value;
     this.user!.email = this.email?.value;
     this.user!.phone = this.phone?.value;
     this.user!.address = this.address?.value;
-    this.userDataService.updateUser(this.user!).subscribe()
+  }
+
+  private checkForm() {
+    return this.name?.valid && this.phone?.valid && this.email?.valid && this.address?.valid;
   }
 }

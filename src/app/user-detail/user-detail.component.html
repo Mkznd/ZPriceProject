@@ -7,7 +7,7 @@
   <input id="user-phone" class="form-control" placeholder="phone" formControlName="phone"
          [class.is-invalid]="phone!.invalid && phone!.touched">
   <input id="user-email" class="form-control" placeholder="email" formControlName="email"
-         [class.is-invalid]="email!.invalid && email!.touched">
+         [class.is-invalid]="email!.invalid && email!.touched" [email]="true">
   <input id="user-address" class="form-control" placeholder="address" formControlName="address"
          [class.is-invalid]="address!.invalid && address!.touched">
   <div class="btn-group-lg">
